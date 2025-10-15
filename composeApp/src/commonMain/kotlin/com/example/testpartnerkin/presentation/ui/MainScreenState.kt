@@ -7,13 +7,15 @@ import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun MainScreenState(
-    viewModel: MainScreenViewModel = koinViewModel()
+    viewModel: MainScreenViewModel = koinViewModel(),
+    onClick: (Int) -> Unit
 ) {
     val state = viewModel.mainScreenData.collectAsStateWithLifecycle()
 
     MainScreen(
         confList = state.value.confList,
         isLoading = state.value.isLoading,
-        error = state.value.error
+        error = state.value.error,
+        onClick = onClick
     )
 }

@@ -1,6 +1,7 @@
 package com.example.testpartnerkin.presentation.ui
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -27,6 +28,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
@@ -41,14 +43,17 @@ import testpartnerkin.composeapp.generated.resources.canceled
 
 @Composable
 fun MainScreenListItem(
-    conference: Conference
+    conference: Conference,
+    onClick: (Int) -> Unit
 ) {
 
     val place by remember {
         mutableStateOf("${conference.city}, ${conference.country}")
     }
 
-    Column(modifier = Modifier.fillMaxWidth()) {
+    Column(
+        modifier = Modifier.fillMaxWidth()
+    ) {
         Text(text = createDate(conference.startDate), modifier = Modifier.padding(start = 16.dp), fontSize = 18.sp)
         Spacer(modifier = Modifier.height(24.dp))
         Column(
@@ -56,6 +61,9 @@ fun MainScreenListItem(
                 color = if (conference.statusTitle == "Отменена") Color(0xFFFF3333).copy(alpha = 0.1f) else Color(0xFFEFF2F9),
                 shape = RoundedCornerShape(16.dp)
             )
+                .clickable {
+                    onClick(conference.id)
+                }
                 .padding(horizontal = 16.dp, vertical = 24.dp)
         ) {
             if (conference.statusTitle == "Отменена") {
@@ -84,7 +92,7 @@ fun MainScreenListItem(
                     modifier = Modifier
                         .weight(1f)
                         .clip(RoundedCornerShape(topStart = 12.dp, bottomStart = 12.dp)),
-                    contentScale = androidx.compose.ui.layout.ContentScale.Crop
+                    contentScale = ContentScale.Crop
                 )
                 Box(
                     modifier = Modifier.fillMaxSize().weight(1f),
@@ -236,6 +244,7 @@ fun MainScreenListItemPreview() {
         url = "https://example.com/conferences/partnerkin-summit"
     )
     MainScreenListItem(
-        conference = conf
+        conference = conf,
+        onClick = {}
     )
 }

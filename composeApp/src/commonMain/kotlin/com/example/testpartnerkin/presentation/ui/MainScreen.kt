@@ -34,7 +34,8 @@ import testpartnerkin.composeapp.generated.resources.icon_Go_back
 fun MainScreen(
     confList: List<Result>,
     isLoading: Boolean,
-    error: String?
+    error: String?,
+    onClick: (Int) -> Unit
 ) {
 
     val columnState = rememberLazyListState()
@@ -81,7 +82,11 @@ fun MainScreen(
             verticalArrangement = Arrangement.spacedBy(48.dp)
         ) {
             items(confList) { conference ->
-                MainScreenListItem(conference = conference.conference)            }
+                MainScreenListItem(
+                    conference = conference.conference,
+                    onClick = onClick
+                )
+            }
         }
     }
 }
@@ -162,7 +167,8 @@ fun MainScreenPreview() {
     MainScreen(
         confList = confList,
         isLoading = false,
-        error = null
+        error = null,
+        onClick = {}
     )
 }
 
