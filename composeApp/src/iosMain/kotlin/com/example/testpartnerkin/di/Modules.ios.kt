@@ -1,0 +1,16 @@
+package com.example.testpartnerkin.di
+
+import com.example.testpartnerkin.data.MyLoggerImpl
+import com.example.testpartnerkin.data.network.HttpClientFactory
+import com.example.testpartnerkin.domain.`interface`.MyLogger
+import io.ktor.client.engine.darwin.Darwin
+import org.koin.core.module.Module
+import org.koin.dsl.module
+
+actual val platformModule: Module = module {
+    single<MyLogger> { MyLoggerImpl }
+
+    single {
+        HttpClientFactory(get()).createHttpClient(Darwin.create())
+    }
+}
