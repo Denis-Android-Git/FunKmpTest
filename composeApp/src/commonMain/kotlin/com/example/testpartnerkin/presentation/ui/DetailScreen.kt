@@ -43,11 +43,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
+import com.example.testpartnerkin.core.calculateDaysBetween
+import com.example.testpartnerkin.core.convertDate
 import com.example.testpartnerkin.domain.models.Category
 import com.example.testpartnerkin.domain.models.DetailsData
 import com.example.testpartnerkin.domain.models.Image
 import com.example.testpartnerkin.domain.models.Type
-import kotlinx.datetime.LocalDate
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import testpartnerkin.composeapp.generated.resources.Icon_Go_back2
@@ -318,36 +319,6 @@ fun DetailScreen(
         }
     }
 }
-
-private fun convertDate(date: String): String {
-    val month = date.substring(5, 7)
-    val monthName = when (month) {
-        "01" -> "января"
-        "02" -> "февраля"
-        "03" -> "марта"
-        "04" -> "апреля"
-        "05" -> "мая"
-        "06" -> "июня"
-        "07" -> "июля"
-        "08" -> "августа"
-        "09" -> "сентября"
-        "10" -> "октября"
-        "11" -> "ноября"
-        "12" -> "декабря"
-        else -> ""
-    }
-    val day = date.substring(8, 10)
-    val year = date.substring(0, 4)
-    return "$day $monthName $year"
-}
-
-fun calculateDaysBetween(startDate: String, endDate: String, inclusive: Boolean = true): Int {
-    val start = LocalDate.parse(startDate)
-    val end = LocalDate.parse(endDate)
-    val days = end.toEpochDays() - start.toEpochDays()
-    return if (inclusive) days.toInt() + 1 else days.toInt()
-}
-
 
 @Composable
 fun TagChip(text: String) {

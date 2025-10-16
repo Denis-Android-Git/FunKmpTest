@@ -32,6 +32,9 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
+import com.example.testpartnerkin.core.createDate
+import com.example.testpartnerkin.core.fromDigitToEngMonth
+import com.example.testpartnerkin.core.takeDay
 import com.example.testpartnerkin.domain.models.Category
 import com.example.testpartnerkin.domain.models.Conference
 import com.example.testpartnerkin.domain.models.Image
@@ -157,55 +160,6 @@ fun MainScreenListItem(
                 Text(text = if (conference.format == "offline") place else conference.format, fontSize = 14.sp, color = darkBlue2)
             }
         }
-    }
-}
-
-private fun createDate(date: String): String {
-    val list = date.split("-")
-    val year = list[0]
-    val month = fromDigitToMonth(date)
-    return "$month, $year"
-}
-
-private fun takeDay(date: String): String {
-    return date.substring(8, 10)
-}
-
-private fun fromDigitToEngMonth(date: String): String {
-    val month = date.substring(5, 7)
-    return when (month) {
-        "01" -> "JAN"
-        "02" -> "FEB"
-        "03" -> "MAR"
-        "04" -> "APR"
-        "05" -> "MAY"
-        "06" -> "JUN"
-        "07" -> "JUL"
-        "08" -> "AUG"
-        "09" -> "SEP"
-        "10" -> "OCT"
-        "11" -> "NOV"
-        "12" -> "DEC"
-        else -> ""
-    }
-}
-
-private fun fromDigitToMonth(date: String): String {
-    val month = date.substring(5, 7)
-    return when (month) {
-        "01" -> "Январь"
-        "02" -> "Февраль"
-        "03" -> "Март"
-        "04" -> "Апрель"
-        "05" -> "Май"
-        "06" -> "Июнь"
-        "07" -> "Июль"
-        "08" -> "Август"
-        "09" -> "Сентябрь"
-        "10" -> "Октябрь"
-        "11" -> "Ноябрь"
-        "12" -> "Декабоь"
-        else -> ""
     }
 }
 
