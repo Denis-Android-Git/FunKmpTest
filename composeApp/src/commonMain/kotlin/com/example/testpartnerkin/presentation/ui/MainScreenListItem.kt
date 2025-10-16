@@ -46,6 +46,8 @@ fun MainScreenListItem(
     conference: Conference,
     onClick: (Int) -> Unit
 ) {
+    val darkBlue = Color(0xFF0E1234)
+    val darkBlue2 = Color(0xFF060A3C)
 
     val place by remember {
         mutableStateOf("${conference.city}, ${conference.country}")
@@ -107,7 +109,7 @@ fun MainScreenListItem(
                             Text(text = takeDay(conference.startDate), fontSize = 40.sp)
                             Text(
                                 text = fromDigitToEngMonth(conference.startDate), fontSize = 12.sp,
-                                color = Color(0xFF0E1234)
+                                color = darkBlue
                             )
                         }
                         Text("-", fontSize = 40.sp)
@@ -117,7 +119,7 @@ fun MainScreenListItem(
                             Text(text = takeDay(conference.endDate), fontSize = 40.sp)
                             Text(
                                 text = fromDigitToEngMonth(conference.endDate), fontSize = 12.sp,
-                                color = Color(0xFF0E1234)
+                                color = darkBlue
                             )
                         }
                     }
@@ -138,7 +140,7 @@ fun MainScreenListItem(
                             .padding(horizontal = 10.dp),
                         contentAlignment = Alignment.Center
                     ) {
-                        Text(text = category.name, fontSize = 11.sp, color = Color(0xFF060A3C))
+                        Text(text = category.name, fontSize = 11.sp, color = darkBlue2)
                     }
                 }
             }
@@ -152,7 +154,7 @@ fun MainScreenListItem(
                     modifier = Modifier.size(16.dp),
                     contentDescription = "Location"
                 )
-                Text(text = if (conference.format == "offline") place else conference.format, fontSize = 14.sp, color = Color(0xFF060A3C))
+                Text(text = if (conference.format == "offline") place else conference.format, fontSize = 14.sp, color = darkBlue2)
             }
         }
     }
