@@ -2,6 +2,7 @@ package com.example.testpartnerkin.data
 
 import com.example.testpartnerkin.data.dto.ResponseDto
 import com.example.testpartnerkin.core.UrlConstant
+import com.example.testpartnerkin.data.dto.DetailDto
 import com.example.testpartnerkin.domain.`interface`.Repository
 import com.example.testpartnerkin.domain.models.Result
 import io.ktor.client.HttpClient
@@ -18,5 +19,11 @@ class RepositoryImpl(
         }.body()
 
         return responseDto.data.result
+    }
+
+    override suspend fun getDetailsDto(): DetailDto {
+        return httpClient.get {
+            url(UrlConstant.DETAIL_URL)
+        }.body()
     }
 }

@@ -23,13 +23,18 @@ fun MyNavigation() {
         composable<MainList> {
             MainScreenState(
                 onClick = {
-                    navController.navigate(Details(it))
+                    navController.navigate(Details(it)) //передаем id для получения деальной инфо в боевом приложеии
                 }
             )
         }
         composable<Details> { backStackEntry ->
-            val details: Details = backStackEntry.toRoute()
-            DetailScreenState(details.id)
+            val details: Details = backStackEntry.toRoute() //получаем аргументы
+            DetailScreenState(
+                details.id,
+                onBackClick = {
+                    navController.navigateUp()
+                }
+            )
         }
     }
 }
