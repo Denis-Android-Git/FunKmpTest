@@ -13,6 +13,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -47,11 +48,14 @@ fun MainScreen(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                Image(
-                    painter = painterResource(resource = Res.drawable.icon_Go_back),
-                    modifier = Modifier.size(24.dp),
-                    contentDescription = "Menu"
-                )
+                IconButton(onClick = {}) {
+                    Image(
+                        painter = painterResource(Res.drawable.icon_Go_back),
+                        modifier = Modifier
+                            .size(24.dp),
+                        contentDescription = "Назад"
+                    )
+                }
                 Text("Конференции", fontSize = 18.sp)
                 Image(
                     painter = painterResource(resource = Res.drawable.hugeicons_customer_support),

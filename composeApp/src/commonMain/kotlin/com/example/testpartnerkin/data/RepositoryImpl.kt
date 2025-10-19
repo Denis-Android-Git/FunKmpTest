@@ -11,7 +11,7 @@ import io.ktor.client.request.get
 import io.ktor.client.request.url
 
 class RepositoryImpl(
-    private val httpClient: HttpClient,
+    private val httpClient: HttpClient
 ) : Repository {
     override suspend fun getResponseDto(): List<Result> {
         val responseDto: ResponseDto = httpClient.get {

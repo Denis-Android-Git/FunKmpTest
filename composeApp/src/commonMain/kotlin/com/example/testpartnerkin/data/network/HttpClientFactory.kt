@@ -11,7 +11,6 @@ import io.ktor.client.plugins.logging.Logging
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 
-
 class HttpClientFactory(
     private val myLogger: MyLogger
 ) {
